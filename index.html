@@ -152,6 +152,76 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vs踩过的坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">vs踩过的坑</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="archive-article-date">
+  	<time datetime="2020-10-06T14:14:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​        相信很多小伙伴都用过visual studio这个编译器（下文简称vs）。这款编译器的大部分功能还是很强大的，而且与其它编译器的差别并不是很明显。vs的安全性特别高，代码除了一点点的小问题，编译器就会报错。接下来就谈一谈，我使用vs过程中踩过的一些坑。</p>
+<h3 id="1、scanf-s"><a href="#1、scanf-s" class="headerlink" title="1、scanf_s"></a>1、scanf_s</h3><p>​        关于scanf函数，在很多编译器当中是可以正常使用的，但是在vs当中，它被认为是不安全函数。因为scanf函数在读取数据时不检查边界情况，这样就很懂依造成内存访问越界。vs提供了一个安全函数scanf_s(),这个函数比scanf函数多一个参数，就是你要输入的个数。在使用这个函数时，只有当要输入char【】，也就是字符数组时，才需要注意下面这些细节。</p>
+<p>​        当你定义一个字符数组的长度为n时，你在输入的时候必需将你要输入的字符长度写入scanf_s的参数当中。而且，虽然你想输入n个字符，但是最多只能输入n-1个字符。因为scanf_s最后一个参数是缓冲区的大小，表示最多读取n-1个字符。下面给一些具体例子的截图。</p>
+<p><img src="../images/1.png" alt="正确用法"></p>
+<p><img src="../images/2.png" alt="输入字符越界"></p>
+<p><img src="../images/3.png" alt="异常报错"></p>
+<p>​        第一张图片是正确的运行结果，第二张是当你输入的字符长度大于n-1时，此时的编译器什么也不输出。第三张是没有n-1这个参数的，编译器直接报错。如果你用scanf_s输入其他类型的变量是，是不用加n这个变量的。</p>
+<p>​        以上就是scan_s函数的一些坑。（第一次写博客，写得不好的地方请多包涵，如果读者有补充的可以回帖，喜欢的可以投喂一下哦！！）</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-如何在GitHub上搭建博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
