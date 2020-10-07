@@ -6,23 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>vs踩过的坑 | 半心人</title>
+  <title>CPP提高 | 半心人</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​        相信很多小伙伴都用过visual studio这个编译器（下文简称vs）。这款编译器的大部分功能还是很强大的，而且与其它编译器的差别并不是很明显。vs的安全性特别高，代码除了一点点的小问题，编译器就会报错。接下来就谈一谈，我使用vs过程中踩过的一些坑。 1、scanf_s​        关于scanf函数，在很多编译器当中是可以正常使用的，但是在vs当中，它被认为是不安全函数。">
+  <meta name="description" content="void用法​        对于void很多小伙伴都没有太关注过这个关键字。事实上这个关键字还是非常有用的。它可以申明一个函数没有返回值。在C语言中，void还可以写在函数的参数中，表示该函数没有参数（当然不写的话也不会报错，只不过编译器会出一个警告）。在C++中就不必将void写入函数的参数中，因为C++底层已经帮用户做了这件事情。然而void最重要的用法是void *也就是void 指针。可">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vs踩过的坑">
-<meta property="og:url" content="http://example.com/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/index.html">
+<meta property="og:title" content="CPP提高">
+<meta property="og:url" content="http://example.com/2020/10/07/CPP%E6%8F%90%E9%AB%98/index.html">
 <meta property="og:site_name" content="半心人">
-<meta property="og:description" content="​        相信很多小伙伴都用过visual studio这个编译器（下文简称vs）。这款编译器的大部分功能还是很强大的，而且与其它编译器的差别并不是很明显。vs的安全性特别高，代码除了一点点的小问题，编译器就会报错。接下来就谈一谈，我使用vs过程中踩过的一些坑。 1、scanf_s​        关于scanf函数，在很多编译器当中是可以正常使用的，但是在vs当中，它被认为是不安全函数。">
+<meta property="og:description" content="void用法​        对于void很多小伙伴都没有太关注过这个关键字。事实上这个关键字还是非常有用的。它可以申明一个函数没有返回值。在C语言中，void还可以写在函数的参数中，表示该函数没有参数（当然不写的话也不会报错，只不过编译器会出一个警告）。在C++中就不必将void写入函数的参数中，因为C++底层已经帮用户做了这件事情。然而void最重要的用法是void *也就是void 指针。可">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://example.com/2020/10/06/images/1.png">
-<meta property="og:image" content="http://example.com/2020/10/06/images/2.png">
-<meta property="og:image" content="http://example.com/2020/10/06/images/3.png">
-<meta property="article:published_time" content="2020-10-06T14:14:01.000Z">
-<meta property="article:modified_time" content="2020-10-06T14:39:23.928Z">
+<meta property="article:published_time" content="2020-10-07T13:50:01.000Z">
+<meta property="article:modified_time" content="2020-10-07T14:41:33.627Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://example.com/2020/10/06/images/1.png">
   
     <link rel="alternative" href="/atom.xml" title="半心人" type="application/atom+xml">
   
@@ -158,34 +154,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-vs踩过的坑" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-CPP提高" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      vs踩过的坑
+      CPP提高
     </h1>
   
 
         
-        <a href="/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" class="archive-article-date">
-  	<time datetime="2020-10-06T14:14:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-06</time>
+        <a href="/2020/10/07/CPP%E6%8F%90%E9%AB%98/" class="archive-article-date">
+  	<time datetime="2020-10-07T13:50:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​        相信很多小伙伴都用过visual studio这个编译器（下文简称vs）。这款编译器的大部分功能还是很强大的，而且与其它编译器的差别并不是很明显。vs的安全性特别高，代码除了一点点的小问题，编译器就会报错。接下来就谈一谈，我使用vs过程中踩过的一些坑。</p>
-<h3 id="1、scanf-s"><a href="#1、scanf-s" class="headerlink" title="1、scanf_s"></a>1、scanf_s</h3><p>​        关于scanf函数，在很多编译器当中是可以正常使用的，但是在vs当中，它被认为是不安全函数。因为scanf函数在读取数据时不检查边界情况，这样就很懂依造成内存访问越界。vs提供了一个安全函数scanf_s(),这个函数比scanf函数多一个参数，就是你要输入的个数。在使用这个函数时，只有当要输入char【】，也就是字符数组时，才需要注意下面这些细节。</p>
-<p>​        当你定义一个字符数组的长度为n时，你在输入的时候必需将你要输入的字符长度写入scanf_s的参数当中。而且，虽然你想输入n个字符，但是最多只能输入n-1个字符。因为scanf_s最后一个参数是缓冲区的大小，表示最多读取n-1个字符。下面给一些具体例子的截图。</p>
-<p><img src="../images/1.png" alt="正确用法"></p>
-<p><img src="../images/2.png" alt="输入字符越界"></p>
-<p><img src="../images/3.png" alt="异常报错"></p>
-<p>​        第一张图片是正确的运行结果，第二张是当你输入的字符长度大于n-1时，此时的编译器什么也不输出。第三张是没有n-1这个参数的，编译器直接报错。如果你用scanf_s输入其他类型的变量是，是不用加n这个变量的。</p>
-<p>​        以上就是scan_s函数的一些坑。（第一次写博客，写得不好的地方请多包涵，如果读者有补充的可以回帖，喜欢的可以投喂一下哦！！）</p>
+        <h3 id="void用法"><a href="#void用法" class="headerlink" title="void用法"></a>void用法</h3><p>​        对于void很多小伙伴都没有太关注过这个关键字。事实上这个关键字还是非常有用的。它可以申明一个函数没有返回值。在C语言中，void还可以写在函数的参数中，表示该函数没有参数（当然不写的话也不会报错，只不过编译器会出一个警告）。在C++中就不必将void写入函数的参数中，因为C++底层已经帮用户做了这件事情。然而void最重要的用法是void *也就是void 指针。可以说void *是所有指针的祖先。这是因为任何类型的指针都可以赋值给void *。void * 出现在函数的参数中，说明该函数可以接受任何类型的指针。如果void *出现在函数开头，说明这个函数可以返回任何类型的指针。</p>
+<p>​        典型的如内存操作函数memcpy和memset的函数原型分别为：<br>void * memcpy(void *dest, const void *src, size_t len);<br>void * memset ( void * buffer, int c, size_t num );</p>
+<p>　　这样，任何类型的指针都可以传入memcpy和memset中，这也真实地体现了内存操作函数的意义，因为它操作的对象仅仅是一片内存，而不论这片内存是什么类型。</p>
 
       
 
@@ -275,7 +266,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2020/10/07/CPP%E6%8F%90%E9%AB%98/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -289,18 +280,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/07/CPP%E6%8F%90%E9%AB%98/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          CPP提高
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/10/02/%E5%A6%82%E4%BD%95%E5%9C%A8GitHub%E4%B8%8A%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何在GitHub上搭建博客</div>
+    <a href="/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vs踩过的坑</div>
       <i class="icon-circle-right"></i>
     </a>
   

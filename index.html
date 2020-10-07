@@ -152,6 +152,71 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-CPP提高" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/07/CPP%E6%8F%90%E9%AB%98/">CPP提高</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/07/CPP%E6%8F%90%E9%AB%98/" class="archive-article-date">
+  	<time datetime="2020-10-07T13:50:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="void用法"><a href="#void用法" class="headerlink" title="void用法"></a>void用法</h3><p>​        对于void很多小伙伴都没有太关注过这个关键字。事实上这个关键字还是非常有用的。它可以申明一个函数没有返回值。在C语言中，void还可以写在函数的参数中，表示该函数没有参数（当然不写的话也不会报错，只不过编译器会出一个警告）。在C++中就不必将void写入函数的参数中，因为C++底层已经帮用户做了这件事情。然而void最重要的用法是void *也就是void 指针。可以说void *是所有指针的祖先。这是因为任何类型的指针都可以赋值给void *。void * 出现在函数的参数中，说明该函数可以接受任何类型的指针。如果void *出现在函数开头，说明这个函数可以返回任何类型的指针。</p>
+<p>​        典型的如内存操作函数memcpy和memset的函数原型分别为：<br>void * memcpy(void *dest, const void *src, size_t len);<br>void * memset ( void * buffer, int c, size_t num );</p>
+<p>　　这样，任何类型的指针都可以传入memcpy和memset中，这也真实地体现了内存操作函数的意义，因为它操作的对象仅仅是一片内存，而不论这片内存是什么类型。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/07/CPP%E6%8F%90%E9%AB%98/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vs踩过的坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -313,7 +378,7 @@
 <p>123</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;iostream&gt;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;helloworld&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/images/123.jpg" alt="123"></p>
+<p><img src="/images/123.jpg" alt="1235"></p>
 
       
 
