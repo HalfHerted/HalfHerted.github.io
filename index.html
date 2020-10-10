@@ -152,6 +152,94 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-内存四区" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/10/%E5%86%85%E5%AD%98%E5%9B%9B%E5%8C%BA/">内存四区</a>
+    </h1>
+  
+
+        
+        <a href="/2020/10/10/%E5%86%85%E5%AD%98%E5%9B%9B%E5%8C%BA/" class="archive-article-date">
+  	<time datetime="2020-10-10T07:38:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>​        这篇文章主要介绍的是程序内存的四个存储区域：代码区、全局区、栈区、堆区。</p>
+<h4 id="代码区"><a href="#代码区" class="headerlink" title="代码区"></a>代码区</h4><p>​        代码区，简单来说就是存放代码的一块区域，这块区域在程序运行前存在。其实代码区存放的代码时CPU执行的机器指令，也就是二进制字符串。</p>
+<p>​        代码区有两个特点：共享性和只读性。</p>
+<p>​        1、共享性：因为一个程序有可能被运行很多次，不可能每次运行前都要将代码保存一次，所以共享性是为了让程序能够高效的多次运行。</p>
+<p>​        2、只读性：为了防止程序运行过程中被恶意修改代码，造成损失，所以代码区具有只读性，不能修改。</p>
+<h4 id="全局区"><a href="#全局区" class="headerlink" title="全局区"></a>全局区</h4><p>​        全局区也是在程序运行之前存在的一块区域。存放在全局区的数据主要有三类：全局变量、静态变量、常量。其中常量有可以细分为字符串常量和const修饰的变量，字符串常量存放在全局区。const修饰的变量又可以分为const修饰的全局变量和const修饰的局部变量。其中const修饰的全局变量存放在全局区，而const修饰的局部变量（局部常量）不存放在全局区。下面代码演示</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//全局变量</span></span><br><span class="line"><span class="keyword">int</span> g_a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">int</span> g_b = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//const修饰的全局变量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> c_g_a = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> c_g_b = <span class="number">100</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="comment">//静态变量</span></span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> s_a = <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> s_b = <span class="number">10</span>;</span><br><span class="line">	<span class="comment">//const修饰的局部变量</span></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> c_l_a = <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> c_l_b = <span class="number">10</span>;</span><br><span class="line">	<span class="comment">//全局变量</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;全局变量g_a的地址为：&quot;</span> &lt;&lt; &amp;g_a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;全局变量g_b的地址为：&quot;</span> &lt;&lt; &amp;g_b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//静态变量</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;静态变量s_a的地址为：&quot;</span> &lt;&lt; &amp;s_a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;静态变量s_a的地址为：&quot;</span> &lt;&lt; &amp;s_a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//字符串常量</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;字符串常量的地址为：&quot;</span> &lt;&lt; &amp;<span class="string">&quot;hello&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//const修饰的全局变量</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;const修饰的全局变量的地址为：&quot;</span> &lt;&lt; &amp;c_g_a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;const修饰的全局变量的地址为：&quot;</span> &lt;&lt; &amp;c_g_a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="comment">//const修饰的局部变量</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;const修饰的局部变量的地址为：&quot;</span> &lt;&lt; &amp;c_l_a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;const修饰的局部变量的地址为：&quot;</span> &lt;&lt; &amp;c_l_a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/ne.png" alt="运行结果"></p>
+<p>从运行结果可以看出全局变量、静态变量、字符串常量、以及const修饰的全局变量他们的内存位置靠得非常近，而const修饰得局部变量与他们靠得非常远。这也就说明了const修饰得局部变量与另外几个不在一个区域。</p>
+<p>​        另外：全局区的数据在程序结束后由系统释放</p>
+<h4 id="栈区"><a href="#栈区" class="headerlink" title="栈区"></a>栈区</h4><p>​        栈区由编译器自动释放，存放在栈区的数据主要有函数的参数、和局部变量。尤其需要注意的是不能返回局部变量的地址，因为栈区的数据在程序结束后是由编译器自动释放，所以返回局部变量的地址是找不到你想找的那个数据的。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">test01</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">int</span>* p = &amp;a;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = test01();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;		<span class="comment">//第一次成功访问到数据是因为编译器做了一次保留</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;		<span class="comment">//第二次就访问不到该数据了</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/4.png" alt="运行结果"></p>
+<h4 id="堆区"><a href="#堆区" class="headerlink" title="堆区"></a>堆区</h4><p>​        堆区的数据由程序员进行释放，当然如果程序员忘记释放，在程序运行结束后编译器也会帮你释放。一般在堆区开辟空间需要用到new关键字。</p>
+<p>​        在上面的栈区说到不能返回局部变量的地址是因为局部变量存放在栈区，栈区的数据由编译器自动释放。那么我们把数据开辟到堆区呢？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">test02</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p =<span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">10</span>);</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = test02();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/5.png" alt="运行结果"></p>
+<p>​        可以发现输出了四次仍然可以访问到数据。这是因为堆区的数据没有被释放，那么释放之后又会如何呢？</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">test02</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p =<span class="keyword">new</span> <span class="keyword">int</span> (<span class="number">10</span>);</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>* p = test02();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;		</span><br><span class="line">	<span class="built_in">free</span>(p);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/6.png" alt="运行结果"></p>
+<p>​        可以看到，前两次是没有将数据释放掉是可以访问的，后面将数据释放掉之后，就访问不到该数据了。</p>
+<p>​        以上就是我对内存四区的全部理解，如果有不足的地方请指正。如果觉得讲得还不错的话，可以投喂一下哦！！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/10/10/%E5%86%85%E5%AD%98%E5%9B%9B%E5%8C%BA/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-CPP提高" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
