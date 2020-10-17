@@ -6,20 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://halfherted.github.io">
-  <title>CPP提高 | 半心人的小屋</title>
+  <title>引用的用法及注意事项 | 半心人的小屋</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="​        这篇文章主要介绍一下C++的一些注意事项和一些不太常见却很重要的用法">
+  <meta name="description" content="这篇文章主要介绍一下C++中引用的一些用法和注意事项。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CPP提高">
-<meta property="og:url" content="https://halfherted.github.io/2020/10/07/CPP%E6%8F%90%E9%AB%98/index.html">
+<meta property="og:title" content="引用的用法及注意事项">
+<meta property="og:url" content="https://halfherted.github.io/2020/10/15/%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/index.html">
 <meta property="og:site_name" content="半心人的小屋">
-<meta property="og:description" content="​        这篇文章主要介绍一下C++的一些注意事项和一些不太常见却很重要的用法">
+<meta property="og:description" content="这篇文章主要介绍一下C++中引用的一些用法和注意事项。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2020-10-07T13:50:01.000Z">
-<meta property="article:modified_time" content="2020-10-13T07:22:46.398Z">
+<meta property="og:image" content="https://halfherted.github.io/images/7.png">
+<meta property="og:image" content="https://halfherted.github.io/images/8.png">
+<meta property="og:image" content="https://halfherted.github.io/images/11.png">
+<meta property="og:image" content="https://halfherted.github.io/images/12.png">
+<meta property="og:image" content="https://halfherted.github.io/images/13.png">
+<meta property="og:image" content="https://halfherted.github.io/images/14.png">
+<meta property="article:published_time" content="2020-10-15T15:35:07.000Z">
+<meta property="article:modified_time" content="2020-10-17T04:23:01.844Z">
 <meta property="article:author" content="半心人">
 <meta property="article:tag" content="C++">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://halfherted.github.io/images/7.png">
   
     <link rel="alternative" href="/atom.xml" title="半心人的小屋" type="application/atom+xml">
   
@@ -169,40 +176,80 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-CPP提高" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-引用的用法及注意事项" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      CPP提高
+      引用的用法及注意事项
     </h1>
   
 
         
-        <a href="/2020/10/07/CPP%E6%8F%90%E9%AB%98/" class="archive-article-date">
-  	<time datetime="2020-10-07T13:50:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-07</time>
+        <a href="/2020/10/15/%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" class="archive-article-date">
+  	<time datetime="2020-10-15T15:35:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-10-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>​        这篇文章主要介绍一下C++的一些注意事项和一些不太常见却很重要的用法</p>
+        <p> 这篇文章主要介绍一下C++中引用的一些用法和注意事项。</p>
 <a id="more"></a>
 
-<h3 id="void用法"><a href="#void用法" class="headerlink" title="void用法"></a>void用法</h3><p>&lt;&gt;</p>
-<p>​        对于void很多小伙伴都没有太关注过这个关键字。事实上这个关键字还是非常有用的。它可以申明一个函数没有返回值。在C语言中，void还可以写在函数的参数中，表示该函数没有参数（当然不写的话也不会报错，只不过编译器会出一个警告）。在C++中就不必将void写入函数的参数中，因为C++底层已经帮用户做了这件事情。然而void最重要的用法是void *也就是void 指针。可以说void *是所有指针的祖先。这是因为任何类型的指针都可以赋值给void *。void * 出现在函数的参数中，说明该函数可以接受任何类型的指针。如果void *出现在函数开头，说明这个函数可以返回任何类型的指针。</p>
-<p>​        典型的如内存操作函数memcpy和memset的函数原型分别为：<br>void * memcpy(void *dest, const void *src, size_t len);<br>void * memset ( void * buffer, int c, size_t num );</p>
-<p>　　这样，任何类型的指针都可以传入memcpy和memset中，这也真实地体现了内存操作函数的意义，因为它操作的对象仅仅是一片内存，而不论这片内存是什么类型。</p>
+<h3 id="1、引用的作用"><a href="#1、引用的作用" class="headerlink" title="1、引用的作用"></a>1、引用的作用</h3><p>​        引用在C++中的作用就是给一个变量取一个别名，具体语法为：数据类型 + &amp; + 别名 = 原名。引用的本质其实是一个指针常量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">int</span>&amp; b = a;		<span class="comment">//a 和 b的效果相同</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	test01();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、引用的注意事项"><a href="#2、引用的注意事项" class="headerlink" title="2、引用的注意事项"></a>2、引用的注意事项</h3><p>​        引用有两个注意需要注意的地方</p>
+<h4 id="1、引用必须初始化"><a href="#1、引用必须初始化" class="headerlink" title="1、引用必须初始化"></a>1、引用必须初始化</h4><p><img src="/images/7.png" alt="引用必须初始化"></p>
+<p>由图可以看到，在未初始化时，vs提示了一个错误“引用变量类型‘b’初始化设定”，这就是提示我们没有给引用初始化。</p>
+<h4 id="2、引用初始化后不可改变"><a href="#2、引用初始化后不可改变" class="headerlink" title="2、引用初始化后不可改变"></a>2、引用初始化后不可改变</h4><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">test01</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">int</span> c = <span class="number">100</span>;</span><br><span class="line">	<span class="keyword">int</span>&amp; b = a;</span><br><span class="line">	b = c;		<span class="comment">//这里是赋值操作，并不能改变b的指向</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; a &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	test01();</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/8.png" alt="引用初始化后不能改变"></p>
+<p>由运行结果我们可以看出，虽然由一串代码 b=c，但这代码仅仅是赋值操作。前面我们说了，引用的本质是一个指针常量，在这里仅仅是让b所指向的内存空间（也就是a所在的内存位置）重新赋值为c（也就是100）。所以最后输出的a和b的值都为100。类似于下面代码 <code>int a = 10;int *b = &amp;a;int c = 100;*b = c;</code> 唯一不同的是*b的指向可以改变，而引用的指向不可以改变。</p>
+<h3 id="3、引用作函数的参数"><a href="#3、引用作函数的参数" class="headerlink" title="3、引用作函数的参数"></a>3、引用作函数的参数</h3><p>相信大多数小伙伴都知道函数参数的传递方式有两种，第一种是值传递，第二种是地址传递。下面我们先分别为值传递和地址传递写一段代码。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//值传递</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_swap1</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;my_swap1中的a,b为&quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot;\t&quot;</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_swap2</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span>* b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = *a;</span><br><span class="line">	*a = *b;</span><br><span class="line">	*b = temp;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;my_swap2中的a,b为&quot;</span> &lt;&lt; *a &lt;&lt; <span class="string">&quot;\t&quot;</span> &lt;&lt; *b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line">	my_swap1(a, b);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;main中的a,b为    &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot;\t&quot;</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    my_swap1(a, b);</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;main中的a,b为    &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot;\t&quot;</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/11.png" alt="值传递和地址传递"></p>
+<p>相信大家对上面两个已经非常熟悉了，这里我就不做过多的介绍了。下面我们来看一下引用作为函数参数的情况。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">my_swap</span><span class="params">(<span class="keyword">int</span> &amp;a, <span class="keyword">int</span> &amp;b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> temp = a;</span><br><span class="line">	a = b;</span><br><span class="line">	b = temp;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;my_swap1中的a,b为&quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot;\t&quot;</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>, b = <span class="number">20</span>;</span><br><span class="line">	my_swap(a, b);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;main中的a,b为    &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot;\t&quot;</span> &lt;&lt; b &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/12.png" alt="引用作为函数参数"></p>
+<p>由运行结果我们可以看出，如果用引用作为函数的参数，在函数内部修改变量的值，也会改变函数外面的值。实际上my_swap函数的内部实现是, <code>int &amp;a = a；int &amp;b = b；</code>给变量a和b取了一个别名，只不过别名等于原名。他们指向同一块内存，所以在函数内部修改变量的值，函数外部的值也会改变。</p>
+<h3 id="4、引用作函数返回值"><a href="#4、引用作函数返回值" class="headerlink" title="4、引用作函数返回值"></a>4、引用作函数返回值</h3><p>在C++中函数的返回值可以是一个引用，需要注意的是不可以返回局部变量的引用，这一点和不能返回局部变量的指针是一样的，因为局部变量是在栈区开辟的空间，而栈区的数据在函数结束后就自动释放了。此外，引用作为函数的返回值，这个函数还可以作为左值进行运算。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//1、不能返回局部变量的引用</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">func</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//2、函数引用可以作为左值</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>&amp; <span class="title">func2</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">static</span> <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">	<span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span>&amp; ref = func();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;不能返回局部变量的引用&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ref &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ref &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; <span class="string">&quot;函数引用可以作为左值&quot;</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="keyword">int</span> &amp;ref2 = func2();</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ref2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">	func2() = <span class="number">1000</span>;		<span class="comment">//将1000赋值给func2（）</span></span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; ref2 &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; func2() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	system(<span class="string">&quot;pause&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/images/13.png" alt="注意事项"></p>
+<p>返回局部变量的引用，第一次可以成功访问是因为编译器做了一次保留，后面如果再访问就会出现乱码。函数可以作为左值是因为函数的返回值是一个a的引用，相当于int &amp;a = 1000；</p>
+<h3 id="5、常量引用"><a href="#5、常量引用" class="headerlink" title="5、常量引用"></a>5、常量引用</h3><p>常量引用的主要用途是防止函数的参数被更改，此外引用必须指向一个合法的空间，不能直接让引用等于一个值。但是如果在引用前面加上一个const就可以直接赋值。</p>
+<p><img src="/images/14.png" alt="引用必须指向一个合法空间"></p>
+<p>这是因为加const后编译器自动在底层给我们做了一些操作，<code>int temp = 10;const int &amp;ref = temp;</code> 这样ref指向的就是temp这块空间了。</p>
 
        
          <!-- 增加版权声明 -->
 
 
 
-  <div class="declare" hidden="hidden"></div>
+  <div class="declare">
+    <strong>本文作者：</strong>
+    
+      半心人
+    
+    <br>
+    <strong>本文链接：
+    <a rel="license" href="https://halfherted.github.io/2020/10/15/%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">https://halfherted.github.io/2020/10/15/%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</a>
+    <br>
+    <strong>版权声明：</strong>
+    本作品采用
+    <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>
+    进行许可。转载请注明出处！
+    
+      <br>
+      <a rel="license noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"/></a>
+    
+  </div>
 
 
 <!-- 增加版权声明结束 -->
@@ -306,7 +353,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://halfherted.github.io/2020/10/07/CPP%E6%8F%90%E9%AB%98/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://halfherted.github.io/2020/10/15/%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -320,18 +367,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2020/10/10/%E5%86%85%E5%AD%98%E5%9B%9B%E5%8C%BA/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          内存四区
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/10/06/vs%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">vs踩过的坑</div>
+    <a href="/2020/10/10/%E5%86%85%E5%AD%98%E5%9B%9B%E5%8C%BA/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">内存四区</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -358,7 +396,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#void%E7%94%A8%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">void用法</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E5%BC%95%E7%94%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">1、引用的作用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%BC%95%E7%94%A8%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">2、引用的注意事项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E5%BC%95%E7%94%A8%E5%BF%85%E9%A1%BB%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">1、引用必须初始化</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%BC%95%E7%94%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E5%90%8E%E4%B8%8D%E5%8F%AF%E6%94%B9%E5%8F%98"><span class="toc-number">2.2.</span> <span class="toc-text">2、引用初始化后不可改变</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%BC%95%E7%94%A8%E4%BD%9C%E5%87%BD%E6%95%B0%E7%9A%84%E5%8F%82%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">3、引用作函数的参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%BC%95%E7%94%A8%E4%BD%9C%E5%87%BD%E6%95%B0%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">4.</span> <span class="toc-text">4、引用作函数返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E5%B8%B8%E9%87%8F%E5%BC%95%E7%94%A8"><span class="toc-number">5.</span> <span class="toc-text">5、常量引用</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -372,7 +410,7 @@
   
   <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="CPP提高" data-title="CPP提高" data-url="https://halfherted.github.io/2020/10/07/CPP%E6%8F%90%E9%AB%98/"></div>
+	<div class="ds-thread" data-thread-key="引用的用法及注意事项" data-title="引用的用法及注意事项" data-url="https://halfherted.github.io/2020/10/15/%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
@@ -395,8 +433,8 @@
   <div id="cloud-tie-wrapper" class="cloud-tie-wrapper"></div>
 <script>
   var cloudTieConfig = {
-    url: "https://halfherted.github.io/2020/10/07/CPP%E6%8F%90%E9%AB%98/", 
-    sourceId: "CPP提高",
+    url: "https://halfherted.github.io/2020/10/15/%E5%BC%95%E7%94%A8%E7%9A%84%E7%94%A8%E6%B3%95%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/", 
+    sourceId: "引用的用法及注意事项",
     productKey: "true",
     target: "cloud-tie-wrapper"
   };
@@ -405,7 +443,7 @@
   
 
   
-  <div id="SOHUCS" sid="CPP提高" ></div> 
+  <div id="SOHUCS" sid="引用的用法及注意事项" ></div> 
 <script charset="utf-8" type="text/javascript" src="//changyan.sohu.com/upload/changyan.js" ></script>
 <script type="text/javascript">
     window.changyan.api.config({
