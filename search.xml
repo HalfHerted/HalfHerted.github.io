@@ -69,6 +69,9 @@
 <p><img src="/images/14.png" alt="引用必须指向一个合法空间"></p>
 <p>这是因为加const后编译器自动在底层给我们做了一些操作，<code>int temp = 10;const int &amp;ref = temp;</code> 这样ref指向的就是temp这块空间了。</p>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
       <tags>
         <tag>C++</tag>
       </tags>
@@ -84,6 +87,9 @@
 <p>​        典型的如内存操作函数memcpy和memset的函数原型分别为：<br>void * memcpy(void *dest, const void *src, size_t len);<br>void * memset ( void * buffer, int c, size_t num );</p>
 <p>　　这样，任何类型的指针都可以传入memcpy和memset中，这也真实地体现了内存操作函数的意义，因为它操作的对象仅仅是一片内存，而不论这片内存是什么类型。</p>
 ]]></content>
+      <categories>
+        <category>C++</category>
+      </categories>
       <tags>
         <tag>C++</tag>
       </tags>
@@ -100,6 +106,9 @@
 <p>​        第一张图片是正确的运行结果，第二张是当你输入的字符长度大于n-1时，此时的编译器什么也不输出。第三张是没有n-1这个参数的，编译器直接报错。如果你用scanf_s输入其他类型的变量是，是不用加n这个变量的。</p>
 <p>​        以上就是scan_s函数的一些坑。（第一次写博客，写得不好的地方请多包涵，如果读者有补充的可以回帖，喜欢的可以投喂一下哦！！）</p>
 ]]></content>
+      <categories>
+        <category>vs2019</category>
+      </categories>
       <tags>
         <tag>vs2019</tag>
       </tags>
