@@ -68,11 +68,16 @@
 <p>异或运算具有一下几个特征</p>
 <p>1、任意一个变量X与其自身进行异或运算，结果为0，即X^X = 0;</p>
 <p>2、任意一个变量X与0进行异或运算结果为自身，即X^0 = X；</p>
-<p>3、异或运算具有可结合性；</p>
-<p>4、异或运算具有可交换性；</p>
+<h2 id="3、异或运算具有可结合性；"><a href="#3、异或运算具有可结合性；" class="headerlink" title="3、异或运算具有可结合性；"></a>3、异或运算具有可结合性；</h2><p>4、异或运算具有可交换性；</p>
 <p>具体实现代码如下：</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">changeAandB</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">20</span>;</span><br><span class="line">        a = a ^ b;</span><br><span class="line">        b = a ^ b;	<span class="comment">//此时a等于a^b ,b = a^b^b = a^(0) = a;</span></span><br><span class="line">        a = a ^ b;	<span class="comment">//此时b等于a ， a = a ^ b ^ a = b;</span></span><br><span class="line">        System.out.println(<span class="string">&quot;a的值是&quot;</span>+a);</span><br><span class="line">        System.out.println(<span class="string">&quot;b的值是&quot;</span>+b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h2 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h2><h3 id="循环跳转"><a href="#循环跳转" class="headerlink" title="循环跳转"></a>循环跳转</h3><h4 id="continue、break"><a href="#continue、break" class="headerlink" title="continue、break"></a>continue、break</h4><p>带标号的跳转，跳过标号指定的循环语句</p>
+<h2 id="面向对象编程"><a href="#面向对象编程" class="headerlink" title="面向对象编程"></a>面向对象编程</h2><h3 id="成员变量与成员方法"><a href="#成员变量与成员方法" class="headerlink" title="成员变量与成员方法"></a>成员变量与成员方法</h3><h4 id="方法的返回值"><a href="#方法的返回值" class="headerlink" title="方法的返回值"></a>方法的返回值</h4><p>1、在方法的声明时，return语句返回的返回值类型必须是声明时兼容类型的数值。比如你声明了一个返回值为float类型的函数，那么此时return语句后面的值可以为float、int、short、char类型，因为float兼容这些类型。但是绝不可以返回double类型，因为double类型的级别比float类型的级别高。</p>
+<p>2、在返回值类型被声明为void的方法中，也可以使用不带返回值的return语句，它可以结束该方法的执行。</p>
+<h3 id="类成员与类方法"><a href="#类成员与类方法" class="headerlink" title="类成员与类方法"></a>类成员与类方法</h3><p>成员变量与成员方法是每个对象的属性与行为的抽象，如果把他们定义成静态的就会在内存中为它们分配固定的内存空间，同时他们也会成为类的成员而非对象的成员</p>
+<h4 id="类变量"><a href="#类变量" class="headerlink" title="类变量"></a>类变量</h4><p>在成员变量的基础上添加static就成为了类变量，类变量不是分配给每个实例变量的，而是属于类的变量，他在内存中是唯一的，可以直接使用“类名.类变量”的格式去访问；它在内存中的位置是固定的，是该类的所有实例对象所共享的存储单元。</p>
+<p>需要注意的是声明为静态的变量必须是成员变量，而不能是局部变量，在方法体内或任何代码块中声明的变量不能使用static关键字。</p>
 ]]></content>
       <tags>
         <tag>java</tag>
