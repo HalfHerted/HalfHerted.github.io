@@ -78,6 +78,33 @@
 <h3 id="类成员与类方法"><a href="#类成员与类方法" class="headerlink" title="类成员与类方法"></a>类成员与类方法</h3><p>成员变量与成员方法是每个对象的属性与行为的抽象，如果把他们定义成静态的就会在内存中为它们分配固定的内存空间，同时他们也会成为类的成员而非对象的成员</p>
 <h4 id="类变量"><a href="#类变量" class="headerlink" title="类变量"></a>类变量</h4><p>在成员变量的基础上添加static就成为了类变量，类变量不是分配给每个实例变量的，而是属于类的变量，他在内存中是唯一的，可以直接使用“类名.类变量”的格式去访问；它在内存中的位置是固定的，是该类的所有实例对象所共享的存储单元。</p>
 <p>需要注意的是声明为静态的变量必须是成员变量，而不能是局部变量，在方法体内或任何代码块中声明的变量不能使用static关键字。</p>
+<h2 id="字符串处理"><a href="#字符串处理" class="headerlink" title="字符串处理"></a>字符串处理</h2><h3 id="string类"><a href="#string类" class="headerlink" title="string类"></a>string类</h3><h4 id="创建字符串对象"><a href="#创建字符串对象" class="headerlink" title="创建字符串对象"></a>创建字符串对象</h4><p>提取字符数组部分元素创建字符串</p>
+<p>方法声明：<code>public String(char arr[],int offset,int length)</code></p>
+<p>参数说明：arr是包含一些字符的数组，offset是开始截取字符串的位置，length表示截取字符串的长度</p>
+<h3 id="连接字符串"><a href="#连接字符串" class="headerlink" title="连接字符串"></a>连接字符串</h3><h4 id="连接其他数据类型"><a href="#连接其他数据类型" class="headerlink" title="连接其他数据类型"></a>连接其他数据类型</h4><p>字符串也可以同其他数据类型进行连接。如果将字符串同这些数据类型的数据进行连接，会将这些数据直接转换成字符串。</p>
+<h3 id="获取字符串信息"><a href="#获取字符串信息" class="headerlink" title="获取字符串信息"></a>获取字符串信息</h3><h4 id="获取字符串长度"><a href="#获取字符串长度" class="headerlink" title="获取字符串长度"></a>获取字符串长度</h4><p>使用String类的length()方法可获取声明的字符串对象长度。</p>
+<h4 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h4><h5 id="indexOf-String-s"><a href="#indexOf-String-s" class="headerlink" title="indexOf(String s)"></a>indexOf(String s)</h5><p>该方法放回字符串s在指定字符串中首次出现的索引位置，如果没有检索到s则返回-1.</p>
+<h5 id="lastIndexOf-String-s"><a href="#lastIndexOf-String-s" class="headerlink" title="lastIndexOf(String s)"></a>lastIndexOf(String s)</h5><p>该方法返回字符串s最后一次出现的索引位置，和indexOf一样都是从头开始检索，如果没有则返回-1.</p>
+<p>注意：lastIndexOf()方法中参数如果是空字符串“”(注意没有空格)，则返回的结果与调用length方法的返回结果一致。indexOf()方法中参数如果是空字符串“”(注意没有空格)，返回的结果是0。</p>
+<h4 id="获取指定索引位置的字符"><a href="#获取指定索引位置的字符" class="headerlink" title="获取指定索引位置的字符"></a>获取指定索引位置的字符</h4><p>使用charAt(int index)方法可将指定索引处的字符返回</p>
+<h4 id="格式化字符"><a href="#格式化字符" class="headerlink" title="格式化字符"></a>格式化字符</h4><p>在这里学到了一个新的数据类型Date型，<code>Date date = new Date()</code> 用来获取当前日期。常用的格式化都是对日期和时间的格式化</p>
+<h4 id="字符串生成器"><a href="#字符串生成器" class="headerlink" title="字符串生成器"></a>字符串生成器</h4><p>对于创建成功的字符串对象，它的长度是固定的，内容不能被改变。虽然使用“+”可以达到附加新字符串或字符的目的，但“+”会产生一个新的String实例，会在内存中创建新的字符串对象。如果重复地对字符串进行连接以获取符合条件的新字符串，将极大地增加系统开销。</p>
+<p><code>StringBuilder builder = new StringBuilder(&quot;&quot;);//创建字符串生成器</code></p>
+<p>这里我还学到了一个能够计算出程序运行时间的函数 System.currentTimeMillis();</p>
+<p>StringBuilder类方法中的函数：</p>
+<p>1、append()方法</p>
+<p>该方法用于向字符串生成器中追加内容。通过该方法的多个重载形式，可实现接受任意类型的数据。包括基本数据类型和其他数据类型或者是另一个字符串生成器。</p>
+<p>2、insert(int offset，str)方法</p>
+<p>向字符串生成器中指定位置(offset)加入字符串(str)。</p>
+<p>3、delete(int start,int end)</p>
+<p>删除字符串从start开始一直到end-1结束</p>
+<p>若想使用字符串生成器最后输出字符串结果，可使用toString()方法.即str.toString()。</p>
+<h4 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h4><p>str.replace(old.new);</p>
+<h4 id="获取子符串"><a href="#获取子符串" class="headerlink" title="获取子符串"></a>获取子符串</h4><p>str.substring()</p>
+<h4 id="判断字符串的开始和结尾"><a href="#判断字符串的开始和结尾" class="headerlink" title="判断字符串的开始和结尾"></a>判断字符串的开始和结尾</h4><p>str.startwith(str1)</p>
+<p>str.endwith(str2)</p>
+<h4 id="字符串分割"><a href="#字符串分割" class="headerlink" title="字符串分割"></a>字符串分割</h4><p>str.spilt(“char”,int z)</p>
+<p>以“char”分割，最后结果要分出来“z”个。</p>
 ]]></content>
       <tags>
         <tag>java</tag>
